@@ -1,2 +1,203 @@
 # automated-sales-reporting-pipeline
 End-to-end automated sales reporting pipeline using n8n, Google Sheets API, Gemini AI, and Gmail API — processes weekly sales data, generates AI-powered insights, and delivers structured HTML reports automatically.
+# 📊 Weekly Sales Intelligence System
+
+> An end-to-end automated sales reporting pipeline that collects, analyzes, and delivers AI-powered weekly insights — with zero manual intervention.
+
+![n8n](https://img.shields.io/badge/n8n-workflow-orange?style=flat-square&logo=n8n)
+![Gemini](https://img.shields.io/badge/Gemini-AI-blue?style=flat-square&logo=google)
+![Google Sheets](https://img.shields.io/badge/Google%20Sheets-API-green?style=flat-square&logo=googlesheets)
+![Gmail](https://img.shields.io/badge/Gmail-API-red?style=flat-square&logo=gmail)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow?style=flat-square&logo=javascript)
+
+---
+
+## 🚀 What It Does
+
+This project automates the entire weekly sales reporting process — from raw data ingestion to AI-generated insights delivered straight to your inbox every week.
+
+**No dashboards to refresh. No spreadsheets to wrangle. Just insights, automatically.**
+
+---
+
+## 📸 Output Preview
+
+The system generates a clean, structured email report every week containing:
+
+- ✅ Total Revenue & Units Sold
+- ✅ Top Performing Product breakdown
+- ✅ Online vs Offline Channel Comparison
+- ✅ AI-generated Sales Trend Summary
+- ✅ Regional performance highlights
+
+> **Example Output (Week 4, April 2026):**
+> - Total Revenue: ₹1,25,600
+> - Total Units Sold: 244
+> - Top Product: Product E (60 units, ₹30,000 revenue)
+> - Online channels outperformed offline: ₹69,000 vs ₹56,600
+
+---
+
+## 🏗️ System Architecture
+
+```
+Google Sheets (Raw Data)
+        │
+        ▼
+┌─────────────────┐
+│  Step 1:        │  Schedule Trigger → Fetch rows from Google Sheets
+│  Trigger & Fetch│
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│  Step 2:        │  Remove empty rows → Filter latest week → 
+│  Clean & Analyze│  Calculate KPIs via JavaScript
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│  Step 3:        │  Send processed data to Gemini AI →
+│  AI Insights    │  Generate human-readable trends & summaries
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│  Step 4:        │  Format HTML email → Send via Gmail API
+│  Format & Send  │
+└─────────────────┘
+```
+
+---
+
+## 🛠️ Tech Stack
+
+| Tool | Purpose |
+|------|---------|
+| **n8n** | Workflow orchestration & automation |
+| **Google Sheets API** | Raw sales data source |
+| **JavaScript (n8n Code nodes)** | Data cleaning, filtering & KPI calculation |
+| **Gemini AI API** | AI-generated insights & trend summaries |
+| **Gmail API** | Automated email delivery |
+
+---
+
+## ⚙️ Workflow Steps
+
+### Step 1 — Trigger & Fetch
+- Runs on a **weekly schedule** (every Monday)
+- Fetches all rows from a connected Google Sheet containing daily sales records
+
+### Step 2 — Clean & Analyze
+- **Removes empty/invalid rows** using a JavaScript code node
+- **Filters data** to only the latest week's entries
+- **Calculates key metrics**: total revenue, units sold, top product, channel breakdown, regional performance
+
+### Step 3 — AI Insights (Gemini)
+- Sends the processed weekly data to **Google Gemini**
+- Generates natural language summaries, trend analysis, and business insights
+- Returns structured text ready for email formatting
+
+### Step 4 — Format & Send
+- A JavaScript node formats the output into a **styled HTML email**
+- Gmail API sends the report automatically to the configured recipient(s)
+
+---
+
+## 📁 Project Structure
+
+```
+weekly-sales-intelligence/
+│
+├── workflow/
+│   └── weekly_sales_insight_generator.json   # n8n workflow export
+│
+├── sample_data/
+│   └── sales_data_sample.csv                 # Sample Google Sheets data format
+│
+├── screenshots/
+│   ├── workflow_overview.png                 # n8n workflow screenshot
+│   └── email_output_sample.png              # Sample generated email
+│
+└── README.md
+```
+
+---
+
+## 🚦 Getting Started
+
+### Prerequisites
+- [n8n](https://n8n.io/) account (cloud or self-hosted)
+- Google Cloud project with **Sheets API** and **Gmail API** enabled
+- Google Gemini API key
+- A Google Sheet with sales data in the expected format
+
+### Google Sheet Format
+
+Your sheet should have the following columns:
+
+| Date | Product | Units Sold | Revenue | Channel | Region |
+|------|---------|-----------|---------|---------|--------|
+| 2026-04-01 | Product A | 20 | 10000 | Online | North |
+
+### Setup Steps
+
+1. **Clone this repo** and import `workflow/weekly_sales_insight_generator.json` into your n8n instance
+2. **Connect credentials** in n8n:
+   - Google Sheets OAuth2
+   - Gmail OAuth2
+   - Gemini API key (HTTP Request node)
+3. **Update the Google Sheet ID** in the "Get row(s) in sheet" node
+4. **Set your recipient email** in the "Send a message" node
+5. **Activate the workflow** — it will run automatically every week
+
+---
+
+## 📊 Sample Metrics Calculated
+
+```javascript
+// Example KPIs generated by the JavaScript code node
+{
+  totalRevenue: 125600,
+  totalUnitsSold: 244,
+  topProduct: { name: "Product E", units: 60, revenue: 30000 },
+  channelBreakdown: {
+    online: { revenue: 69000, units: 138 },
+    offline: { revenue: 56600, units: 106 }
+  },
+  topRegion: "North"
+}
+```
+
+---
+
+## 💡 Key Features
+
+- 🔄 **Fully Automated** — runs every week with no manual steps
+- 🤖 **AI-Powered** — Gemini generates real insights, not templated text
+- 🧹 **Data Cleaning** — handles missing/invalid rows automatically
+- 📧 **Professional Output** — styled HTML email report
+- 📈 **Scalable** — easily extend to multiple sheets, products, or regions
+
+---
+
+## 🔮 Future Improvements
+
+- [ ] Add Looker Studio / Google Data Studio dashboard link in email
+- [ ] Support multi-region, multi-team email routing
+- [ ] Store historical weekly snapshots in a database (PostgreSQL/BigQuery)
+- [ ] Add SQL layer for more complex querying
+- [ ] Slack/Teams notification in addition to email
+- [ ] Anomaly detection (flag unusual spikes or drops)
+
+---
+
+## 🙋 About This Project
+
+Built as a personal portfolio project to demonstrate **end-to-end data pipeline development**, **workflow automation**, and **practical AI integration** in a business context.
+
+> This report was generated automatically via n8n — [see the live output example in `/screenshots`]
+
+---
+
+*⭐ If you found this project useful or interesting, consider giving it a star!*
