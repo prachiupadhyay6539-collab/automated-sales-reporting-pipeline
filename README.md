@@ -29,7 +29,7 @@ The system generates a clean, structured email report every week containing:
 - ✅ Regional performance highlights
 
 ## 📸 Output Preview
-![Email Report](screenshots/email_output_sample.png)
+![Email Report](screenshots/email_output_sample.png.jpeg)
 
 ## 🏗️ Workflow
 ![n8n Workflow](screenshots/workflow_overview.png)
