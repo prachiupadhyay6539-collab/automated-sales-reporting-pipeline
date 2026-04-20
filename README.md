@@ -28,11 +28,11 @@ The system generates a clean, structured email report every week containing:
 - ✅ AI-generated Sales Trend Summary
 - ✅ Regional performance highlights
 
-> **Example Output (Week 4, April 2026):**
-> - Total Revenue: ₹1,25,600
-> - Total Units Sold: 244
-> - Top Product: Product E (60 units, ₹30,000 revenue)
-> - Online channels outperformed offline: ₹69,000 vs ₹56,600
+## 📸 Output Preview
+![Email Report](screenshots/email_output_sample.png)
+
+## 🏗️ Workflow
+![n8n Workflow](screenshots/workflow_overview.png)
 
 ---
 
