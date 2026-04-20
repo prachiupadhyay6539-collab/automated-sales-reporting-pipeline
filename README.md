@@ -28,9 +28,6 @@ The system generates a clean, structured email report every week containing:
 - ✅ AI-generated Sales Trend Summary
 - ✅ Regional performance highlights
 
-## 📸 Output Preview
-![Email Report](Screenshot/email_output_sample.png.jpeg)
-
 ## 🏗️ Workflow
 ![n8n Workflow](Workflow/workflow_overview.png.jpeg)
 
